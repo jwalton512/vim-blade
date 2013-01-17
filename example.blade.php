@@ -18,6 +18,8 @@
     <p>This is appended to the master sidebar.</p>
 @stop
 
+@show
+
 @section('content')
     <p>This is my body content.</p>
 @stop
@@ -27,9 +29,11 @@ Hello, {{ $name }}.
 The current UNIX timestamp is {{ time() }}.
 
 @if (count($records) > 0)
-    I have records!
+    <p>I have records!</p>
+@elseif (count($records) < 0)
+    <p>I owe records!</p>
 @else
-    I don't have any records!
+    <p>I want records!</p>
 @endif
 
 @unless (Auth::check())
@@ -37,7 +41,7 @@ The current UNIX timestamp is {{ time() }}.
 @endunless
 
 @for ($i = 0; $i < 10; $i++)
-    The current value is {{ $i }}
+    <p>The current value is {{ $i }}</p>
 @endfor
 
 @foreach ($users as $user)
@@ -49,5 +53,7 @@ The current UNIX timestamp is {{ time() }}.
 @endwhile
 
 @include('view.name')
+
+@each('foo', $data, 'bar')
 
 {{-- This comment will not be in the rendered HTML --}}
