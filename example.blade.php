@@ -28,6 +28,12 @@ Hello, {{ $name }}.
 
 The current UNIX timestamp is {{ time() }}.
 
+{{ $multiline->should()
+    ->work()
+    ->as()
+    ->well()
+}}
+
 @if (count($records) > 0)
     <p>I have records!</p>
 @elseif (count($records) < 0)
