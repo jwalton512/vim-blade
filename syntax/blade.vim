@@ -65,6 +65,7 @@ syntax cluster bladePHP add=
     \phpCoreConstant,
     \phpEnvVar,
     \phpFloat,
+    \phpFunctions,
     \phpIdentifier,
     \phpIdentifierComplex,
     \phpIdentifierComplexP,
