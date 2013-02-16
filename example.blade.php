@@ -25,6 +25,7 @@
 @stop
 
 Hello, {{ $name }}.
+Hello, {{{ $rawName }}}.
 
 The current UNIX timestamp is {{ time() }}.
 
