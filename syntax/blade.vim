@@ -49,8 +49,8 @@ syntax match bladeTag /^\s*@show\>/ containedin=@bladeHTML
 
 syntax region bladeStringDouble start=/"/ end=/"/ contained oneline containedin=@bladeHTML
 
-syntax region bladeRawEcho matchgroup=bladeEchoDelim start=/{{{ / end=/ }}}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
-syntax region bladeEcho matchgroup=bladeEchoDelim start=/{{ / end=/ }}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
+syntax region bladeEcho matchgroup=bladeEchoDelim start=/{{{ / end=/ }}}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
+syntax region bladeRawEcho matchgroup=bladeEchoDelim start=/{{ / end=/ }}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
 
 syntax region bladeComment start=/{{-- / end=/ --}}/
 
