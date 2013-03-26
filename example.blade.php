@@ -24,6 +24,10 @@
     <p>This is my body content.</p>
 @stop
 
+@lang('message.apples')
+
+@choice('message.apples', 10)
+
 Hello, {{ $name }}.
 Hello, {{{ $rawName }}}.
 

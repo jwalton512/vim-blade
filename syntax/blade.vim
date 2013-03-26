@@ -47,6 +47,9 @@ syntax match bladeTag /^\s*@include\>/ nextgroup=bladeExpression skipwhite conta
 
 syntax match bladeTag /^\s*@show\>/ containedin=@bladeHTML
 
+syntax match bladeTag /^\s*@lang\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+syntax match bladeTag /^\s*@choice\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+
 syntax region bladeStringDouble start=/"/ end=/"/ contained oneline containedin=@bladeHTML
 
 syntax region bladeEcho matchgroup=bladeEchoDelim start=/{{{ / end=/ }}}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
