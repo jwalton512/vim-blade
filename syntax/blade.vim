@@ -4,51 +4,44 @@ if exists("b:current_syntax")
     finish
 endif
 
-if exists("b:current_syntax")
-    unlet b:current_syntax
-endif
 syntax include @bladeHTML syntax/html.vim
-
-if exists("b:current_syntax")
-    unlet b:current_syntax
-endif
+unlet! b:current_syntax
 syntax include @bladePHP syntax/php.vim
+unlet! b:current_syntax
 
 syntax case match
 
-syntax region bladeNonBlade start=/^\s*[^@]/ end=/$/ oneline contains=@bladeHTML
+syntax match bladeTag /\s*@if\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+syntax match bladeTag /\s*@elseif\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+syntax match bladeTag /\s*@else\>/ containedin=@bladeHTML
+syntax match bladeTag /\s*@endif\>/ containedin=@bladeHTML
 
-syntax match bladeTag /^\s*@if\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /^\s*@elseif\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /^\s*@else\>/ containedin=@bladeHTML
-syntax match bladeTag /^\s*@endif\>/ containedin=@bladeHTML
+syntax match bladeTag /\s*@section\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+syntax match bladeTag /\s*@stop\>/ containedin=@bladeHTML
+syntax match bladeTag /\s*@parent\>/ containedin=@bladeHTML
+syntax match bladeTag /\s*@yield\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+syntax match bladeTag /\s*@extends\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
 
-syntax match bladeTag /^\s*@section\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /^\s*@stop\>/ containedin=@bladeHTML
-syntax match bladeTag /^\s*@parent\>/ containedin=@bladeHTML
-syntax match bladeTag /^\s*@yield\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /^\s*@extends\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+syntax match bladeTag /\s*@unless\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+syntax match bladeTag /\s*@endunless\>/ containedin=@bladeHTML
 
-syntax match bladeTag /^\s*@unless\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /^\s*@endunless\>/ containedin=@bladeHTML
+syntax match bladeTag /\s*@for\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+syntax match bladeTag /\s*@endfor\>/ containedin=@bladeHTML
 
-syntax match bladeTag /^\s*@for\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /^\s*@endfor\>/ containedin=@bladeHTML
+syntax match bladeTag /\s*@foreach\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+syntax match bladeTag /\s*@endforeach\>/ containedin=@bladeHTML
 
-syntax match bladeTag /^\s*@foreach\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /^\s*@endforeach\>/ containedin=@bladeHTML
+syntax match bladeTag /\s*@while\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+syntax match bladeTag /\s*@endwhile\>/ containedin=@bladeHTML
 
-syntax match bladeTag /^\s*@while\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /^\s*@endwhile\>/ containedin=@bladeHTML
+syntax match bladeTag /\s*@each\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
 
-syntax match bladeTag /^\s*@each\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+syntax match bladeTag /\s*@include\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
 
-syntax match bladeTag /^\s*@include\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+syntax match bladeTag /\s*@show\>/ containedin=@bladeHTML
 
-syntax match bladeTag /^\s*@show\>/ containedin=@bladeHTML
-
-syntax match bladeTag /^\s*@lang\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /^\s*@choice\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+syntax match bladeTag /\s*@lang\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+syntax match bladeTag /\s*@choice\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
 
 syntax region bladeStringDouble start=/"/ end=/"/ contained oneline containedin=@bladeHTML
 
@@ -92,5 +85,8 @@ syntax cluster bladePHP add=
 hi def link bladeTag Keyword
 hi def link bladeEchoDelim phpParent
 hi def link bladeComment Comment
+
+runtime! syntax/html.vim
+runtime! after/syntax/html.vim
 
 let b:current_syntax = "blade"
