@@ -18,6 +18,7 @@ syntax match bladeTag /\s*@endif\>/ containedin=@bladeHTML
 
 syntax match bladeTag /\s*@section\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
 syntax match bladeTag /\s*@stop\>/ containedin=@bladeHTML
+syntax match bladeTag /\s*@endsection\>/ containedin=@bladeHTML
 syntax match bladeTag /\s*@parent\>/ containedin=@bladeHTML
 syntax match bladeTag /\s*@yield\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
 syntax match bladeTag /\s*@extends\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
@@ -39,6 +40,7 @@ syntax match bladeTag /\s*@each\>/ nextgroup=bladeExpression skipwhite contained
 syntax match bladeTag /\s*@include\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
 
 syntax match bladeTag /\s*@show\>/ containedin=@bladeHTML
+syntax match bladeTag /\s*@overwrite\>/ containedin=@bladeHTML
 
 syntax match bladeTag /\s*@lang\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
 syntax match bladeTag /\s*@choice\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML

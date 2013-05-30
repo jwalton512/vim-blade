@@ -24,6 +24,12 @@
     <p>This is my body content.</p>
 @stop
 
+@section('content')
+    <p>This is my body content.</p>
+@endsection
+
+@overwrite
+
 @lang('message.apples')
 
 @choice('message.apples', 10)
