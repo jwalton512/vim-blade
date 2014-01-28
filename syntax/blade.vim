@@ -90,5 +90,6 @@ hi def link bladeComment Comment
 
 runtime! syntax/html.vim
 runtime! after/syntax/html.vim
+runtime! indent/html.vim
 
 let b:current_syntax = "blade"
