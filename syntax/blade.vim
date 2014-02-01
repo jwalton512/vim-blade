@@ -47,8 +47,8 @@ syntax match bladeTag /\s*@choice\>/ nextgroup=bladeExpression skipwhite contain
 
 syntax region bladeStringDouble start=/"/ end=/"/ contained oneline containedin=@bladeHTML
 
-syntax region bladeEcho matchgroup=bladeEchoDelim start=/{{{ / end=/ }}}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
-syntax region bladeRawEcho matchgroup=bladeEchoDelim start=/{{ / end=/ }}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
+syntax region bladeEcho matchgroup=bladeEchoDelim start=/{{{ / end=/}}}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
+syntax region bladeRawEcho matchgroup=bladeEchoDelim start=/{{ / end=/}}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
 
 syntax region bladeComment start=/{{-- / end=/ --}}/
 
