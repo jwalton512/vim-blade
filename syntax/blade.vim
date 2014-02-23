@@ -88,7 +88,7 @@ hi def link bladeTag Keyword
 hi def link bladeEchoDelim phpParent
 hi def link bladeComment Comment
 
-runtime! syntax/html.vim
-runtime! after/syntax/html.vim
+runtime! syntax/php.vim
+runtime! after/syntax/php.vim
 
 let b:current_syntax = "blade"
