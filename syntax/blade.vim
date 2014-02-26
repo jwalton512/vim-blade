@@ -47,8 +47,8 @@ syntax match bladeTag /\s*@choice\>/ nextgroup=bladeExpression skipwhite contain
 
 syntax region bladeStringDouble start=/"/ end=/"/ contained oneline containedin=@bladeHTML
 
-syntax region bladeEcho matchgroup=bladeEchoDelim start=/{{{ / end=/ }}}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
-syntax region bladeRawEcho matchgroup=bladeEchoDelim start=/{{ / end=/ }}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
+syntax region bladeEcho matchgroup=bladeEchoDelim start=/{{{ / end=/}}}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
+syntax region bladeRawEcho matchgroup=bladeEchoDelim start=/{{ / end=/}}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
 
 syntax region bladeComment start=/{{-- / end=/ --}}/
 
@@ -88,7 +88,7 @@ hi def link bladeTag Keyword
 hi def link bladeEchoDelim phpParent
 hi def link bladeComment Comment
 
-runtime! syntax/html.vim
-runtime! after/syntax/html.vim
+runtime! syntax/php.vim
+runtime! after/syntax/php.vim
 
 let b:current_syntax = "blade"
