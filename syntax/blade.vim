@@ -50,7 +50,7 @@ syntax region bladeStringDouble start=/"/ end=/"/ contained oneline containedin=
 syntax region bladeEcho matchgroup=bladeEchoDelim start=/{{{ / end=/}}}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
 syntax region bladeRawEcho matchgroup=bladeEchoDelim start=/{{ / end=/}}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
 
-syntax region bladeComment start=/{{-- / end=/ --}}/
+syntax region bladeComment start=/{{--\s*/ end=/\s*--}}/
 
 
 syntax match bladeExpression /\(.*\)\s*$/ contained contains=@bladePHP
