@@ -1,94 +1,33 @@
-" only support 6.x+
+" Language:	    Blade (Laravel)
+" Maintainer:	xsbeats <jwalton512@gmail.com>
+" URL:	        http://github.com/xsbeats/vim-blade
+" License:      WTFPL
 
 if exists("b:current_syntax")
     finish
 endif
 
-syntax include @bladeHTML syntax/html.vim
-unlet! b:current_syntax
-syntax include @bladePHP syntax/php.vim
-unlet! b:current_syntax
+runtime! syntax/html.vim
+unlet b:current_syntax
 
-syntax case match
+syn include @php syntax/php.vim
+unlet b:current_syntax
 
-syntax match bladeTag /\s*@if\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /\s*@elseif\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /\s*@else\>/ containedin=@bladeHTML
-syntax match bladeTag /\s*@endif\>/ containedin=@bladeHTML
+syn match bladeConditional /@\(choice\|each\|elseif\|extends\|for\|foreach\|if\|include\|lang\|section\|unless\|while\|yield\)\>/ skipwhite nextgroup=bladeParenBlock
 
-syntax match bladeTag /\s*@section\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /\s*@stop\>/ containedin=@bladeHTML
-syntax match bladeTag /\s*@endsection\>/ containedin=@bladeHTML
-syntax match bladeTag /\s*@parent\>/ containedin=@bladeHTML
-syntax match bladeTag /\s*@yield\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /\s*@extends\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
+syn match bladeKeyword /@\(else\|endfor\|endforeach\|endif\|endsection\|endunless\|endwhile\|overwrite\|parent\|show\|stop\)\>/
 
-syntax match bladeTag /\s*@unless\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /\s*@endunless\>/ containedin=@bladeHTML
+syn region bladeCommentBlock start="{{--" end="--}}" contains=bladeComment keepend
+syn match bladeComment /.*/ contained containedin=bladeCommentBlock
 
-syntax match bladeTag /\s*@for\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /\s*@endfor\>/ containedin=@bladeHTML
+syn region bladeEchoRaw matchgroup=bladeEchoDelim start="{{{" end="}}}" contains=@phpClInside
+syn region bladeEchoSanitized matchgroup=bladeEchoDelim start="{{\(--\)\@!" end="}}" contains=@phpClInside
 
-syntax match bladeTag /\s*@foreach\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /\s*@endforeach\>/ containedin=@bladeHTML
+syn region bladeParenBlock start="(" end=")" contained oneline contains=bladeParenBlock,@phpClInside
 
-syntax match bladeTag /\s*@while\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /\s*@endwhile\>/ containedin=@bladeHTML
-
-syntax match bladeTag /\s*@each\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-
-syntax match bladeTag /\s*@include\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-
-syntax match bladeTag /\s*@show\>/ containedin=@bladeHTML
-syntax match bladeTag /\s*@overwrite\>/ containedin=@bladeHTML
-
-syntax match bladeTag /\s*@lang\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-syntax match bladeTag /\s*@choice\>/ nextgroup=bladeExpression skipwhite containedin=@bladeHTML
-
-syntax region bladeStringDouble start=/"/ end=/"/ contained oneline containedin=@bladeHTML
-
-syntax region bladeEcho matchgroup=bladeEchoDelim start=/{{{ / end=/}}}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
-syntax region bladeRawEcho matchgroup=bladeEchoDelim start=/{{ / end=/}}/ contains=@bladePHP containedin=@bladeHTML,bladeStringDouble,bladeNonBlade
-
-syntax region bladeComment start=/{{--\s*/ end=/\s*--}}/
-
-
-syntax match bladeExpression /\(.*\)\s*$/ contained contains=@bladePHP
-
-syntax cluster bladePHP add=
-    \phpBoolean,
-    \phpComparison,
-    \phpConditional,
-    \phpConstant,
-    \phpCoreConstant,
-    \phpEnvVar,
-    \phpFloat,
-    \phpFunctions,
-    \phpIdentifier,
-    \phpIdentifierComplex,
-    \phpIdentifierComplexP,
-    \phpIdentifierSimply,
-    \phpIntVar,
-    \phpKeyword,
-    \phpLabel,
-    \phpMethods,
-    \phpMethodsVar,
-    \phpNumber,
-    \phpOperator,
-    \phpParent,
-    \phpRelation,
-    \phpRepeat,
-    \phpSpecialChar,
-    \phpStatement,
-    \phpStringDouble,
-    \phpStringSingle,
-    \phpVarSelector
-
-hi def link bladeTag Keyword
-hi def link bladeEchoDelim phpParent
 hi def link bladeComment Comment
+hi def link bladeConditional Conditional
+hi def link bladeKeyword Keyword
+hi def link bladeEchoDelim Delimiter
 
-runtime! syntax/php.vim
-runtime! after/syntax/php.vim
-
-let b:current_syntax = "blade"
+let b:current_syntax = 'blade'
