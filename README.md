@@ -14,3 +14,8 @@ Using pathogen
 Without vim-blade | With vim-blade
 ------------------|---------------
 ![before](screenshots/without.png) | ![after](screenshots/with.png)
+
+
+Todo
+----
+- Add blade specific indentation (if, endif, etc)
