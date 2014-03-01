@@ -11,8 +11,6 @@ Using pathogen
     cd ~/.vim/bundle
     git clone git://github.com/xsbeats/vim-blade.git
 
-Without vim-blade
-![before](http://imgur.com/AgLDvhb)
-
-With vim-blade
-![after](http://imgur.com/UrjtnNa)
+Without vim-blade | With vim-blade
+------------------|---------------
+![before](screenshots/without.png) | ![after](screenshots/with.png)
