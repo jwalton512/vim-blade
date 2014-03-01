@@ -45,6 +45,9 @@ The current UNIX timestamp is {{ time() }}.
     ->well()
 }}
 
+@{{ This should not be processed by $blade }}
+@{{{ Neither should $this }}}
+
 @if (count($records) > 0)
     <p>I have records!</p>
 @elseif (count($records) < 0)

@@ -20,8 +20,8 @@ syn match bladeKeyword /@\(else\|endfor\|endforeach\|endif\|endsection\|endunles
 syn region bladeCommentBlock start="{{--" end="--}}" contains=bladeComment keepend
 syn match bladeComment /.*/ contained containedin=bladeCommentBlock
 
-syn region bladeEchoRaw matchgroup=bladeEchoDelim start="{{{" end="}}}" contains=@phpClInside containedin=htmlString
-syn region bladeEchoSanitized matchgroup=bladeEchoDelim start="{{\(--\)\@!" end="}}" contains=@phpClInside containedin=htmlString
+syn region bladeEchoRaw matchgroup=bladeEchoDelim start="\(@\)\@<!{{{" end="}}}" contains=@phpClInside containedin=htmlString
+syn region bladeEchoSanitized matchgroup=bladeEchoDelim start="\([@|{]\)\@<!{{\(--\)\@!" end="}}" contains=@phpClInside containedin=htmlString
 
 syn region bladeParenBlock start="(" end=")" contained oneline contains=bladeParenBlock,@phpClInside
 
