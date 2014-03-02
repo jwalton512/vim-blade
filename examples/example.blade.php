@@ -76,4 +76,6 @@ The current UNIX timestamp is {{ time() }}.
 
 @each('foo', $data, 'bar')
 
+@foreach ($something as $that) @include($that) @endforeach
+
 {{-- This comment will not be in the rendered HTML --}}

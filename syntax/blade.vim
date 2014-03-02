@@ -23,7 +23,7 @@ syn match bladeComment /.*/ contained containedin=bladeCommentBlock
 syn region bladeEchoUnescaped matchgroup=bladeEchoDelim start="\([@|{]\)\@<!{{\(--\)\@!" end="}}" contains=@phpClInside containedin=htmlString
 syn region bladeEchoEscaped matchgroup=bladeEchoDelim start="\(@\)\@<!{{{" end="}}}" contains=@phpClInside containedin=htmlString
 
-syn region bladeParenBlock start="(" end=")" contained oneline contains=bladeParenBlock,@phpClInside
+syn region bladeParenBlock start="(" end=")" contained oneline contains=bladeParenBlock,@phpClInside keepend
 
 hi def link bladeComment Comment
 hi def link bladeConditional Conditional
