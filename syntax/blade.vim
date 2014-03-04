@@ -7,6 +7,9 @@ if exists("b:current_syntax")
     finish
 endif
 
+runtime! syntax/php.vim
+unlet b:current_syntax
+
 syn include @php syntax/php.vim
 unlet b:current_syntax
 
@@ -26,8 +29,5 @@ hi def link bladeComment Comment
 hi def link bladeConditional Conditional
 hi def link bladeKeyword Keyword
 hi def link bladeEchoDelim Delimiter
-
-runtime! syntax/html.vim
-unlet b:current_syntax
 
 let b:current_syntax = 'blade'
