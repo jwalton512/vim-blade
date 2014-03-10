@@ -7,10 +7,10 @@ if exists("b:current_syntax")
     finish
 endif
 
-runtime! syntax/php.vim
+syn include @php syntax/php.vim
 unlet b:current_syntax
 
-syn include @php syntax/php.vim
+runtime! syntax/html.vim
 unlet b:current_syntax
 
 syn match bladeConditional /@\(choice\|each\|elseif\|extends\|for\|foreach\|if\|include\|lang\|section\|unless\|while\|yield\)\>/ skipwhite nextgroup=bladeParenBlock containedin=TOP
@@ -23,7 +23,9 @@ syn match bladeComment /.*/ contained containedin=bladeCommentBlock
 syn region bladeEchoUnescaped matchgroup=bladeEchoDelim start="\([@|{]\)\@<!{{\(--\)\@!" end="}}" contains=@phpClInside containedin=ALLBUT,bladeComment
 syn region bladeEchoEscaped matchgroup=bladeEchoDelim start="\(@\)\@<!{{{" end="}}}" contains=@phpClInside containedin=ALLBUT,bladeComment
 
-syn region bladeParenBlock start="(" end=")" contained oneline contains=bladeParenBlock,@phpClInside keepend
+syn cluster bladeStatement contains=bladeConditional,bladeKeyword
+
+syn region bladeParenBlock start="(" end=")" contained oneline contains=bladeParenBlock,@phpClInside,@bladeStatement
 
 hi def link bladeComment Comment
 hi def link bladeConditional Conditional
