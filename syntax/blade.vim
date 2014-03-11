@@ -13,11 +13,11 @@ unlet b:current_syntax
 runtime! syntax/html.vim
 unlet b:current_syntax
 
-syn match bladeConditional /@\(choice\|each\|elseif\|extends\|for\|foreach\|if\|include\|lang\|section\|unless\|while\|yield\)\>/ skipwhite nextgroup=bladeParenBlock containedin=TOP
+syn match bladeConditional /@\(choice\|each\|elseif\|extends\|for\|foreach\|if\|include\|lang\|section\|unless\|while\|yield\)\>\s*/ nextgroup=bladeParenBlock containedin=TOP
 
-syn match bladeKeyword /@\(else\|endfor\|endforeach\|endif\|endsection\|endunless\|endwhile\|overwrite\|parent\|show\|stop\)\>/
+syn match bladeKeyword /@\(else\|endfor\|endforeach\|endif\|endsection\|endunless\|endwhile\|overwrite\|parent\|show\|stop\)\>/ containedin=TOP
 
-syn region bladeCommentBlock start="{{--" end="--}}" contains=bladeComment keepend
+syn region bladeCommentBlock start="{{--" end="--}}" contains=bladeComment keepend containedin=TOP
 syn match bladeComment /.*/ contained containedin=bladeCommentBlock
 
 syn region bladeEchoUnescaped matchgroup=bladeEchoDelim start="\([@|{]\)\@<!{{\(--\)\@!" end="}}" contains=@phpClInside containedin=ALLBUT,bladeComment
