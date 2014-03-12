@@ -7,10 +7,10 @@ if exists("b:current_syntax")
     finish
 endif
 
-syn include @php syntax/php.vim
+runtime! syntax/html.vim
 unlet b:current_syntax
 
-runtime! syntax/html.vim
+runtime! syntax/php.vim
 unlet b:current_syntax
 
 syn match bladeConditional /@\(choice\|each\|elseif\|extends\|for\|foreach\|if\|include\|lang\|section\|unless\|while\|yield\)\>\s*/ nextgroup=bladeParenBlock containedin=TOP
