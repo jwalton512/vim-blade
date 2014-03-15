@@ -13,9 +13,9 @@ unlet b:current_syntax
 runtime! syntax/php.vim
 unlet b:current_syntax
 
-syn match bladeConditional /@\(choice\|each\|elseif\|extends\|for\|foreach\|if\|include\|lang\|section\|unless\|while\|yield\)\>\s*/ nextgroup=bladeParenBlock containedin=ALLBUT,bladeComment
+syn match bladeConditional /@\(choice\|each\|elseif\|extends\|for\|foreach\|if\|include\|lang\|section\|unless\|while\|yield\)\>\s*/ nextgroup=bladeParenBlock containedin=TOP
 
-syn match bladeKeyword /@\(else\|endfor\|endforeach\|endif\|endsection\|endunless\|endwhile\|overwrite\|parent\|show\|stop\)\>/ containedin=ALLBUT,bladeComment
+syn match bladeKeyword /@\(else\|endfor\|endforeach\|endif\|endsection\|endunless\|endwhile\|overwrite\|parent\|show\|stop\)\>/ containedin=TOP
 
 syn region bladeCommentBlock start="{{--" end="--}}" contains=bladeComment keepend containedin=TOP
 syn match bladeComment /.*/ contained containedin=bladeCommentBlock
@@ -25,7 +25,7 @@ syn region bladeEchoEscaped matchgroup=bladeEchoDelim start="\(@\)\@<!{{{" end="
 
 syn cluster bladeStatement contains=bladeConditional,bladeKeyword
 
-syn region bladeParenBlock start="(" end=")\s*" contained oneline contains=bladeParenBlock,@phpClInside,@bladeStatement nextgroup=@htmlTop keepend
+syn region bladeParenBlock start="(" end=")" contained oneline contains=bladeParenBlock,@phpClInside,@bladeStatement
 
 hi def link bladeComment Comment
 hi def link bladeConditional Conditional
