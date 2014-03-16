@@ -1,0 +1,38 @@
+<span class="Comment">{{-- &lt;ul class=&quot;errors&quot;&gt;</span>
+<span class="Comment">    @foreach($errors-&gt;get('first_name') as $message)</span>
+<span class="Comment">        &lt;li&gt;{{ $message }}&lt;/li&gt;</span>
+<span class="Comment">    @endforeach</span>
+<span class="Comment">&lt;/ul&gt; --}}</span>
+
+<span class="Special">{{</span> Form<span class="Statement">::</span>label<span class="Special">(</span>'<span class="Constant">first_name</span>', '<span class="Constant">First Name</span>', <span class="Type">array</span><span class="Special">(</span>'<span class="Constant">id</span>' <span class="Statement">=</span><span class="Statement">&gt;</span> '<span class="Constant">first_name</span>'<span class="Special">))</span> <span class="Special">}}</span>
+<span class="Special">{{</span> Form<span class="Statement">::</span>text<span class="Special">(</span>'<span class="Constant">first_name</span>', '<span class="Constant">chan</span>'<span class="Special">)</span> <span class="Special">}}</span>
+<span class="Special">{{</span> Form<span class="Statement">::</span>submit<span class="Special">(</span>'<span class="Constant">Save</span>'<span class="Special">)</span> <span class="Special">}}</span>
+<span class="Special">{{</span> Form<span class="Statement">::</span>close<span class="Special">()</span> <span class="Special">}}</span>
+
+
+
+<span class="Comment">{{-- </span>
+<span class="Comment"> &lt;ul class=&quot;errors&quot;&gt;</span>
+<span class="Comment">    @foreach($errors-&gt;get('first_name') as $message)</span>
+<span class="Comment">        &lt;li&gt;{{ $message }}&lt;/li&gt;</span>
+<span class="Comment">    @endforeach</span>
+<span class="Comment">&lt;/ul&gt; </span>
+<span class="Comment">--}}</span>
+
+ <span class="Special">{{</span> Form<span class="Statement">::</span>label<span class="Special">(</span>'<span class="Constant">first_name</span>', '<span class="Constant">First Name</span>', <span class="Type">array</span><span class="Special">(</span>'<span class="Constant">id</span>' <span class="Statement">=</span><span class="Statement">&gt;</span> '<span class="Constant">first_name</span>'<span class="Special">))</span> <span class="Special">}}</span>
+ <span class="Special">{{</span> Form<span class="Statement">::</span>text<span class="Special">(</span>'<span class="Constant">first_name</span>', '<span class="Constant">chan</span>'<span class="Special">)</span> <span class="Special">}}</span>
+ <span class="Special">{{</span> Form<span class="Statement">::</span>submit<span class="Special">(</span>'<span class="Constant">Save</span>'<span class="Special">)</span> <span class="Special">}}</span>
+ <span class="Special">{{</span> Form<span class="Statement">::</span>close<span class="Special">()</span> <span class="Special">}}</span>
+
+
+
+<span class="Comment">{{-- Important to have no leading whitespace</span>
+<span class="Comment">--}}</span><span class="Identifier">&lt;</span><span class="Statement">li</span><span class="Identifier"> </span><span class="Type">data</span><span class="Identifier">-node-</span><span class="Type">id</span><span class="Identifier">=</span><span class="Constant">&quot;</span><span class="Special">{{{</span> <span class="Statement">$</span><span class="Identifier">model</span><span class="Type">-&gt;</span>getKey<span class="Special">()</span> <span class="Special">}}}</span><span class="Constant">&quot;</span><span class="Identifier">&gt;</span>
+    <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier"> </span><span class="Type">class</span><span class="Identifier">=</span><span class="Constant">&quot;sort-tolerance&quot;</span><span class="Identifier">&gt;</span>
+        <span class="Identifier">&lt;</span><span class="Statement">span</span><span class="Identifier"> </span><span class="Type">class</span><span class="Identifier">=</span><span class="Constant">&quot;sort-handle glyphicon glyphicon-move&quot;</span><span class="Identifier">&gt;</span><span class="Identifier">&lt;/</span><span class="Statement">span</span><span class="Identifier">&gt;</span>
+        <span class="Special">{{{</span> <span class="Statement">$</span><span class="Identifier">model</span><span class="Type">-&gt;</span><span class="Identifier">name</span> <span class="Special">}}}</span>
+    <span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+    <span class="Statement">@include</span><span class="Special">(</span>'<span class="Constant">admin.menu-items.children</span>', <span class="Special">[</span>'<span class="Constant">model</span>' <span class="Statement">=</span><span class="Statement">&gt;</span> <span class="Statement">$</span><span class="Identifier">model</span><span class="Special">])</span>
+<span class="Identifier">&lt;/</span><span class="Statement">li</span><span class="Identifier">&gt;</span><span class="Comment">{{--</span>
+<span class="Comment">This comment stops any trailing whitespace</span>
+<span class="Comment">--}}</span>
