@@ -1,0 +1,81 @@
+<span class="Identifier">&lt;</span><span class="Statement">html</span><span class="Identifier">&gt;</span>
+    <span class="Identifier">&lt;</span><span class="Statement">body</span><span class="Identifier">&gt;</span>
+        <span class="Statement">@section</span><span class="Special">(</span>'<span class="Constant">sidebar</span>'<span class="Special">)</span>
+            This is the master sidebar.
+        <span class="Statement">@stop</span>
+
+        <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier"> </span><span class="Type">class</span><span class="Identifier">=</span><span class="Constant">&quot;container&quot;</span><span class="Identifier">&gt;</span>
+            <span class="Statement">@yield</span><span class="Special">(</span>'<span class="Constant">content</span>'<span class="Special">)</span>
+        <span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+    <span class="Identifier">&lt;/</span><span class="Statement">body</span><span class="Identifier">&gt;</span>
+<span class="Identifier">&lt;/</span><span class="Statement">html</span><span class="Identifier">&gt;</span>
+
+<span class="Statement">@extends</span><span class="Special">(</span>'<span class="Constant">layouts.master</span>'<span class="Special">)</span>
+
+<span class="Statement">@section</span><span class="Special">(</span>'<span class="Constant">sidebar</span>'<span class="Special">)</span>
+    <span class="Statement">@parent</span>
+
+    <span class="Identifier">&lt;</span><span class="Statement">p</span><span class="Identifier">&gt;</span>This is appended to the master sidebar.<span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+<span class="Statement">@stop</span>
+
+<span class="Statement">@show</span>
+
+<span class="Statement">@section</span><span class="Special">(</span>'<span class="Constant">content</span>'<span class="Special">)</span>
+    <span class="Identifier">&lt;</span><span class="Statement">p</span><span class="Identifier">&gt;</span>This is my body content.<span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+<span class="Statement">@stop</span>
+
+<span class="Statement">@section</span><span class="Special">(</span>'<span class="Constant">content</span>'<span class="Special">)</span>
+    <span class="Identifier">&lt;</span><span class="Statement">p</span><span class="Identifier">&gt;</span>This is my body content.<span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+<span class="Statement">@endsection</span>
+
+<span class="Statement">@overwrite</span>
+
+<span class="Statement">@lang</span><span class="Special">(</span>'<span class="Constant">message.apples</span>'<span class="Special">)</span>
+
+<span class="Statement">@choice</span><span class="Special">(</span>'<span class="Constant">message.apples</span>', <span class="Constant">10</span><span class="Special">)</span>
+
+Hello, <span class="Special">{{</span> <span class="Statement">$</span><span class="Identifier">name</span> <span class="Special">}}</span>.
+Hello, <span class="Special">{{{</span> <span class="Statement">$</span><span class="Identifier">rawName</span> <span class="Special">}}}</span>.
+
+The current UNIX timestamp is <span class="Special">{{</span> <span class="Identifier">time</span><span class="Special">()</span> <span class="Special">}}</span>.
+
+<span class="Special">{{</span> <span class="Statement">$</span><span class="Identifier">multiline</span><span class="Type">-&gt;</span>should<span class="Special">()</span>
+    <span class="Type">-&gt;</span>work<span class="Special">()</span>
+    <span class="Type">-&gt;</span>as<span class="Special">()</span>
+    <span class="Type">-&gt;</span>well<span class="Special">()</span>
+<span class="Special">}}</span>
+
+@{{ This should not be processed by $blade }}
+@{{{ Neither should $this }}}
+
+<span class="Statement">@if </span><span class="Special">(</span><span class="Identifier">count</span><span class="Special">(</span><span class="Statement">$</span><span class="Identifier">records</span><span class="Special">)</span> <span class="Statement">&gt;</span> <span class="Constant">0</span><span class="Special">)</span>
+    <span class="Identifier">&lt;</span><span class="Statement">p</span><span class="Identifier">&gt;</span>I have records!<span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+<span class="Statement">@elseif </span><span class="Special">(</span><span class="Identifier">count</span><span class="Special">(</span><span class="Statement">$</span><span class="Identifier">records</span><span class="Special">)</span> <span class="Statement">&lt;</span> <span class="Constant">0</span><span class="Special">)</span>
+    <span class="Identifier">&lt;</span><span class="Statement">p</span><span class="Identifier">&gt;</span>I owe records!<span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+<span class="Statement">@else</span>
+    <span class="Identifier">&lt;</span><span class="Statement">p</span><span class="Identifier">&gt;</span>I want records!<span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+<span class="Statement">@endif</span>
+
+<span class="Statement">@unless </span><span class="Special">(</span>Auth<span class="Statement">::</span>check<span class="Special">())</span>
+    You are not signed in.
+<span class="Statement">@endunless</span>
+
+<span class="Statement">@for </span><span class="Special">(</span><span class="Statement">$</span><span class="Identifier">i</span> <span class="Statement">=</span> <span class="Constant">0</span>; <span class="Statement">$</span><span class="Identifier">i</span> <span class="Statement">&lt;</span> <span class="Constant">10</span>; <span class="Statement">$</span><span class="Identifier">i</span><span class="Statement">++</span><span class="Special">)</span>
+    <span class="Identifier">&lt;</span><span class="Statement">p</span><span class="Identifier">&gt;</span>The current value is <span class="Special">{{</span> <span class="Statement">$</span><span class="Identifier">i</span> <span class="Special">}}</span><span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+<span class="Statement">@endfor</span>
+
+<span class="Statement">@foreach </span><span class="Special">(</span><span class="Statement">$</span><span class="Identifier">users</span> <span class="Statement">as</span> <span class="Statement">$</span><span class="Identifier">user</span><span class="Special">)</span>
+    <span class="Identifier">&lt;</span><span class="Statement">p</span><span class="Identifier">&gt;</span>This is user <span class="Special">{{</span> <span class="Statement">$</span><span class="Identifier">user</span><span class="Type">-&gt;</span>id <span class="Special">}}</span><span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+<span class="Statement">@endforeach</span>
+
+<span class="Statement">@while </span><span class="Special">(</span><span class="Constant">true</span><span class="Special">)</span>
+    <span class="Identifier">&lt;</span><span class="Statement">p</span><span class="Identifier">&gt;</span>I'm looping forever.<span class="Identifier">&lt;/</span><span class="Statement">p</span><span class="Identifier">&gt;</span>
+<span class="Statement">@endwhile</span>
+
+<span class="Statement">@include</span><span class="Special">(</span>'<span class="Constant">view.name</span>'<span class="Special">)</span>
+
+<span class="Statement">@each</span><span class="Special">(</span>'<span class="Constant">foo</span>', <span class="Statement">$</span><span class="Identifier">data</span>, '<span class="Constant">bar</span>'<span class="Special">)</span>
+
+<span class="Statement">@foreach </span><span class="Special">(</span><span class="Statement">$</span><span class="Identifier">something</span> <span class="Statement">as</span> <span class="Statement">$</span><span class="Identifier">that</span><span class="Special">)</span> <span class="Statement">@include</span><span class="Special">(</span><span class="Statement">$</span><span class="Identifier">that</span><span class="Special">)</span> <span class="Statement">@endforeach</span>
+
+<span class="Comment">{{-- This comment will not be in the rendered HTML --}}</span>

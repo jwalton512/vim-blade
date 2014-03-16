@@ -1,0 +1,8 @@
+<span class="Special">&lt;?php</span>
+<span class="Statement">$</span><span class="Identifier">var</span> <span class="Statement">=</span> <span class="Identifier">rand</span><span class="Special">()</span>;
+<span class="Special">?&gt;</span>
+<span class="Statement">@if </span><span class="Special">(</span><span class="Statement">$</span><span class="Identifier">test</span><span class="Special">)</span>
+    <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+        <span class="Special">{{{</span> <span class="Statement">$</span><span class="Identifier">var</span> <span class="Special">}}}</span>
+    <span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+<span class="Statement">@endif</span>

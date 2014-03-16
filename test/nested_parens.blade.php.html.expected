@@ -1,0 +1,3 @@
+<span class="Statement">@if </span><span class="Special">((</span><span class="Constant">1</span><span class="Statement">+</span><span class="Constant">3</span><span class="Special">)</span> <span class="Statement">==</span> <span class="Special">(</span><span class="Constant">1</span><span class="Statement">+</span><span class="Statement">$</span><span class="Identifier">a</span><span class="Special">))</span>
+    <span class="Identifier">&lt;</span><span class="Statement">h1</span><span class="Identifier">&gt;</span><span class="Title">Foo</span><span class="Identifier">&lt;/</span><span class="Statement">h1</span><span class="Identifier">&gt;</span>
+<span class="Statement">@endif</span>
