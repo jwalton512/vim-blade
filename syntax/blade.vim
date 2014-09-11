@@ -13,9 +13,9 @@ unlet b:current_syntax
 runtime! syntax/php.vim
 unlet b:current_syntax
 
-syn match bladeConditional /@\(choice\|each\|elseif\|extends\|for\|foreach\|if\|include\|lang\|section\|unless\|while\|yield\)\>\s*/ nextgroup=bladeParenBlock containedin=ALLBUT,bladeComment
+syn match bladeConditional /@\(forelse\|choice\|each\|elseif\|extends\|for\|foreach\|if\|include\|lang\|section\|unless\|while\|yield\)\>\s*/ nextgroup=bladeParenBlock containedin=ALLBUT,bladeComment
 
-syn match bladeKeyword /@\(else\|endfor\|endforeach\|endif\|endsection\|endunless\|endwhile\|overwrite\|parent\|show\|stop\)\>/ containedin=ALL,bladeComment
+syn match bladeKeyword /@\(empty\|endforelse\|else\|endfor\|endforeach\|endif\|endsection\|endunless\|endwhile\|overwrite\|parent\|show\|stop\)\>/ containedin=ALL,bladeComment
 
 syn region bladeCommentBlock start="{{--" end="--}}" contains=bladeComment keepend containedin=TOP
 syn match bladeComment /.*/ contained containedin=bladeCommentBlock
