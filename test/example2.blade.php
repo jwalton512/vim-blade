@@ -16,8 +16,15 @@
     @foreach($errors->get('first_name') as $message)
         <li>{{ $message }}</li>
     @endforeach
+    
+    @forelse($errors->get('first_name') as $message)
+        <li>{{ $message }}</li>
+    @empty
+        No errors.
+    @endforelse
 </ul> 
 --}}
+
 
  {{ Form::label('first_name', 'First Name', array('id' => 'first_name')) }}
  {{ Form::text('first_name', 'chan') }}

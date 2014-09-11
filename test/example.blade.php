@@ -68,6 +68,12 @@ The current UNIX timestamp is {{ time() }}.
     <p>This is user {{ $user->id }}</p>
 @endforeach
 
+@forelse ($user as $users)
+    <p>This is user {{ $user->id }}</p>
+@empty
+    There are no users.
+@endforelse
+
 @while (true)
     <p>I'm looping forever.</p>
 @endwhile
