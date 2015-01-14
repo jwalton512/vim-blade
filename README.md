@@ -16,6 +16,11 @@ Using vundle
 
     Plugin 'xsbeats/vim-blade'
 
+Using neobundle
+[Neobundle.vim](https://github.com/Shougo/neobundle.vim)
+
+    NeoBundle 'xsbeats/vim-blade'
+
 Todo
 ----
 
