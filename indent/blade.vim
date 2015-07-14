@@ -50,8 +50,8 @@ func! BladeIndent()
 
 		" Check if we have HTML
 		if current_text =~ '^\s*<' || previous_text =~ '^\s*<'
-			if exists('HtmlIndentGet') " Check if plugin 'html5.vim' exist
-				let indext = HtmlIndentGet()
+			if exists('*HtmlIndentGet') " Check if plugin 'html5.vim' exist
+				let indent = HtmlIndentGet(v:lnum)
 			else
 				" We now give the honors to HtmlIndent()
 				let indent = HtmlIndent()
