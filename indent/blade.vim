@@ -10,6 +10,7 @@ endif
 
 " Include HTML
 runtime! indent/html.vim
+silent! unlet b:did_indent " html5.vim indent will set b:did_indext to, unlet it
 runtime! indent/php.vim
 silent! unlet b:did_indent
 
@@ -49,8 +50,12 @@ func! BladeIndent()
 
 		" Check if we have HTML
 		if current_text =~ '^\s*<' || previous_text =~ '^\s*<'
-			" We now give the honors to HtmlIndent()
-			let indent = HtmlIndent()
+			if exists('HtmlIndentGet') " Check if plugin 'html5.vim' exist
+				let indext = HtmlIndentGet()
+			else
+				" We now give the honors to HtmlIndent()
+				let indent = HtmlIndent()
+			endif
 		endif
 	endif
 
