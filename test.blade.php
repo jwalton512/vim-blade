@@ -1,166 +1,69 @@
-/* Regular PHP */
-echo('foo')         // shouldn't be highlighted
-<?php if ($bar->foo == $foo) return false; ?>
+<?php if($foo='bar' ) { $something() } ?>
+Hello, {{ $name }}.
 
-/* Regular HTML */
-<html>
-</html>
+The current UNIX timestamp is {{ time() }}.
 
-/* Echos */
-{!! $name !!}
-{{ $name }}
-{{{ $name }}}
-@{!! $name !!}      // should be treated as regular php
+Hello, @{{ name }}.
 
-/* Structures */
+{{ isset($name) ? $name : 'Default' }}
+
+Hello, {!! $name !!}.
+
+@if ($foo == 'bar') @endif
+
+@if (count($records) === 1)
+    I have one record!
+@elseif (count($records) > 1)
+    I have multiple records!
 @else
-@empty
-@endfor
-@endforeach
+    I don't have any records!
 @endif
-@endpush
-@endsection
+
+@unless (Auth::check())
+    You are not signed in.
 @endunless
-@endwhile
-@overwrite
-@show
-@stop
 
-/* Structures (with conditions) */
-@append('foo')
-@choice('language.line', 1)
-@each(['foo', 'bar'])
-@if ($bar == ($foo*2))
-    {{ $bar }}
-@elseif ($bar == ($foo*3))
-    {{ $bar * 2 }}
-@else
-    'foo'
-@endif
-@extends('layouts.default')
-@for($i = 0; $i < 10; $i++)
-    the value is {{ $i }}
+@for ($i = 0; $i < 10; $i++)
+    The current value is {{ $i }}
+@endfor
+
+@foreach ($users as $user)
+    <p>This is user {{ $user->id }}</p>
 @endforeach
-@forelse($users as $user)
+
+@forelse ($users as $user)
     <li>{{ $user->name }}</li>
 @empty
     <p>No users</p>
 @endforelse
-@include('something')
-@lang('language.line')
-@push('foo')
-    <h1>{{ $foo }}</h1>
-@endpush
-@section('nav')
-    <h1>Home</h1>
-@endsection
-@stack('content')
-@unless(1 == 2)
-    {{ $foo }}
-@endunless
-@while(true == false)
-    {{ $foo }}
+
+@while (true)
+    <p>I'm looping forever.</p>
 @endwhile
-@yield('content')
 
-/* Comments */
-{{-- comments on one line --}}
-{{-- comments
-     on 
-     many
-     lines --}}
-{{-- structures shouldn't escape @if($insideComments == true) --}}
-@yield('section') {{-- comments after structure are valid --}}
-{{ $comments->finished() }}
+@can('update-post', $post)
+    <!-- current user can update the post -->
+@else
+    <!-- current user can't update the post -->
+@endcan
 
-/* Edge Cases */
-// try a multiline include
-@include('admin.misc.sort-header', [
-    'column' => 'name',
-])
-
-// inside html
 <div>
-    @if ($foo == $bar)
-        {{ $foo }}
-    @endif
+    @include('shared.errors')
+    <form>
+        <!-- Form Contents -->
+    </form>
 </div>
 
-// keywords inside of comments
+@each('view.name', $jobs, 'job')
+
+{{-- This comment will not be present in the rendered HTML --}}
+
 {{--
-List from http://www.php.net/manual/en/reserved.keywords.php
-__halt_compiler()
-abstract
-and
-array()
-as
-break
-callable
-case
-catch
-class
-clone
-const
-continue
-declare
-default
-die()
-do
-echo
-else
-elseif
-empty()
-enddeclare
-endfor
-endforeach
-endif
-endswitch
-endwhile
-eval()
-exit()
-extends
-final
-finally
-for
-foreach
-function
-global
-goto
-if
-implements
-include
-include_once
-instanceof
-insteadof
-interface
-isset()
-list()
-namespace
-new
-or
-print
-private
-protected
-public
-require
-require_once
-return
-static
-switch
-throw
-trait
-try
-unset()
-use
-var
-while
-xor
-yield
-__DIR__
-__FILE__
-__FUNCTION__
-__LINE__
-__METHOD__
-__NAMESPACE__
-__TRAIT__
---}
+    This comment spans
+    multiple lines
+    @yield('dont highlight')
+--}}
+
+{{-- todo fixme xxx --}}
+
+@inject('metrics', 'App\Services\MetricsService')
