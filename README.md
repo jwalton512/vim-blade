@@ -5,6 +5,11 @@ Vim syntax highlighting for Blade templates (Laravel 4+).
 Installation
 ------------
 
+Using vim-plug
+[vim-plug](https://github.com/junegunn/vim-plug).
+
+    Plug 'jwalton/vim-blade'
+
 Using pathogen 
 [pathogen.vim](https://github.com/tpope/vim-pathogen).  
 
@@ -14,14 +19,14 @@ Using pathogen
 Using vundle
 [Vundle.vim](https://github.com/gmarik/Vundle.vim).
 
-    Plugin 'xsbeats/vim-blade'
+    Plugin 'jwalton/vim-blade'
 
 Using neobundle
 [Neobundle.vim](https://github.com/Shougo/neobundle.vim)
 
-    NeoBundle 'xsbeats/vim-blade'
+    NeoBundle 'jwalton/vim-blade'
 
 Todo
 ----
 
-Indentation (currently nonexistent)
+~~Indentation~~
