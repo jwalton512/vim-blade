@@ -2,6 +2,8 @@
 
 Vim syntax highlighting for Blade templates (Laravel 4+).
 
+This plugin contributes to [vim-polyglot](https://github.com/sheerun/vim-polyglot) language pack.
+
 Installation
 ------------
 
