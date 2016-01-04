@@ -26,7 +26,7 @@ syn region  bladeComment    matchgroup=bladeDelimiter start="{{--" end="--}}"  c
 syn keyword bladeKeyword    @if @elseif @foreach @forelse @for @while @can @include @each @inject @extends @section @unless nextgroup=bladePhpParenBlock skipwhite containedin=ALLBUT,@bladeExempt
 syn keyword bladeKeyword    @else @endif @endunless @endfor @endforeach @empty @endforelse @endwhile @endcan @stop @append @endsection containedin=ALLBUT,@bladeExempt
 
-syn region  bladePhpParenBlock  matchgroup=bladeDelimiter start="\s*(" end=")" contains=@bladePhp,bladePhpParenBlock skipwhite keepend containedin=ALLBUT,@bladeExempt
+syn region  bladePhpParenBlock  matchgroup=bladeDelimiter start="\s*(" end=")" contains=@bladePhp,bladePhpParenBlock skipwhite containedin=ALLBUT,@bladeExempt
 
 syn cluster bladePhp contains=@phpClTop
 syn cluster bladeExempt contains=bladeComment
