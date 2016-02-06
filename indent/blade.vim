@@ -30,8 +30,15 @@ function! GetBladeIndent()
     let cindent = indent(v:lnum)
     if cline =~# '@\%(else\|elseif\|empty\|end\)'
         let indent = cindent < indent ? cindent : indent - &sw
-    elseif HtmlIndent() > -1
-        let indent = HtmlIndent()
+    else
+        if exists("*EclimGetPhpHtmlIndent")
+            let hindent = EclimGetPhpHtmlIndent(v:lnum)
+        else
+            let hindent = HtmlIndent()
+        endif
+        if hindent > -1
+            let indent = hindent
+        endif
     endif
     let increase = indent + &sw
     if indent = indent(lnum)
