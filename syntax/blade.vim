@@ -31,6 +31,8 @@ syn region  bladePhpParenBlock  matchgroup=bladeDelimiter start="\s*(" end=")" c
 syn cluster bladePhp contains=@phpClTop
 syn cluster bladeExempt contains=bladeComment,@htmlTop
 
+syn cluster htmlPreproc add=bladeEcho,bladeComment
+
 syn keyword bladeTodo todo fixme xxx  contained
 
 hi def link bladeDelimiter      PreProc
