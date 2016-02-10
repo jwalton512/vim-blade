@@ -45,7 +45,9 @@ function! GetBladeIndent()
         let indent = cindent <= indent ? -1 : increase
     endif
 
-    if line =~# '@\%(if\|elseif\|else\|unless\|foreach\|forelse\|for\|while\|empty\)\%(.*\s*@end\)\@!'
+    if line =~# '@\%(section\)\%(.*\s*@end\)\@!' && line !~# '@\%(section\)\s*([^,]*)'
+        return indent
+    elseif line =~# '@\%(if\|elseif\|else\|unless\|foreach\|forelse\|for\|while\|empty\|push\|section\)\%(.*\s*@end\)\@!'
         return increase
     else
         return indent
