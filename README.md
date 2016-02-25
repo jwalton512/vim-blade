@@ -25,4 +25,4 @@ Pull requests are greatly appreciated. Please be certain to include a test where
 
 Want to buy me a coffee?
 ------------------------
-<a href="https://flattr.com/submit/auto?fid=nw0gyr&url=https%3A%2F%2Fgithub.com%2Fjwalton512%2Fvim-blade" target="_blank"><img src="//button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=jwalton512&url=https://github.com/jwalton512/vim-blade&title=vim-blade&language=vimscript&tags=github&category=software)
