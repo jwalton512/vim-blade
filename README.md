@@ -18,17 +18,11 @@ Using pathogen
     cd ~/.vim/bundle
     git clone git://github.com/jwalton512/vim-blade.git
 
-Using vundle
-[Vundle.vim](https://github.com/gmarik/Vundle.vim).
+Contributing
+------------
 
-    Plugin 'jwalton512/vim-blade'
+Pull requests are greatly appreciated. Please be certain to include a test where applicable (`test.blade.php`). You may test locally by using `vim -u vimrc`.
 
-Using neobundle
-[Neobundle.vim](https://github.com/Shougo/neobundle.vim)
-
-    NeoBundle 'jwalton512/vim-blade'
-
-Todo
-----
-
-~~Indentation~~
+Want to buy me a coffee?
+------------------------
+<a href="https://flattr.com/submit/auto?fid=nw0gyr&url=https%3A%2F%2Fgithub.com%2Fjwalton512%2Fvim-blade" target="_blank"><img src="//button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
