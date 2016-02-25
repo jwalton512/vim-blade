@@ -67,3 +67,13 @@ Hello, {!! $name !!}.
 {{-- todo fixme xxx --}}
 
 @inject('metrics', 'App\Services\MetricsService')
+
+@push('scripts')
+    <script src="/example.js"></script>
+@endpush
+
+<head>
+    <!-- Head Contents -->
+
+    @stack('scripts')
+</head>
