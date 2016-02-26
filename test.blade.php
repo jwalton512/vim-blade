@@ -93,3 +93,5 @@ Hello, {!! $name !!}.
     @parent
     <p>This is appended to the master sidebar.</p>
 @endsection
+
+<input name="example" {{ old('example') ? 'checked' : '' }} />
