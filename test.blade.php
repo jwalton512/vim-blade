@@ -74,6 +74,24 @@ Hello, {!! $name !!}.
 
 <head>
     <!-- Head Contents -->
+    <title>Test - @yield('title')</title>
 
     @stack('scripts')
 </head>
+
+<div>
+    @section('sidebar')
+        This is the master sidebar.
+    @show
+
+    @yield('content')
+</div>
+
+@section('title', 'Page Title')
+
+@section('sidebar')
+    @parent
+    <p>This is appended to the master sidebar.</p>
+@endsection
+
+<input name="example" {{ old('example') ? 'checked' : '' }} />
