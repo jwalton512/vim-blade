@@ -31,7 +31,11 @@ function! GetBladeIndent()
     if cline =~# '@\%(else\|elseif\|empty\|end\|show\)'
         let indent = cindent < indent ? cindent : indent - &sw
     else
-        let hindent = HtmlIndent()
+        if exists("*GetBladeIndentCustom")
+            let hindent = GetBladeIndentCustom()
+        else
+            let hindent = HtmlIndent()
+        endif
         if hindent > -1
             let indent = hindent
         endif
