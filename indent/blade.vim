@@ -29,7 +29,7 @@ function! GetBladeIndent()
     let indent = indent(lnum)
     let cindent = indent(v:lnum)
     if cline =~# '@\%(else\|elseif\|empty\|end\|show\)'
-        let indent = cindent < indent ? cindent : indent - &sw
+        let indent = indent - &sw
     else
         if exists("*GetBladeIndentCustom")
             let hindent = GetBladeIndentCustom()
