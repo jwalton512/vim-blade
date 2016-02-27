@@ -47,7 +47,7 @@ function! GetBladeIndent()
 
     if line =~# '@\%(section\)\%(.*\s*@end\)\@!' && line !~# '@\%(section\)\s*([^,]*)'
         return indent
-    elseif line =~# '@\%(if\|elseif\|else\|unless\|foreach\|forelse\|for\|while\|empty\|push\|section\)\%(.*\s*@end\)\@!'
+    elseif line =~# '@\%(if\|elseif\|else\|unless\|foreach\|forelse\|for\|while\|empty\|push\|section\|can\)\%(.*\s*@end\)\@!'
         return increase
     else
         return indent
