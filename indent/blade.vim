@@ -29,7 +29,7 @@ function! GetBladeIndent()
     let indent = indent(lnum)
     let cindent = indent(v:lnum)
     if cline =~# '@\%(else\|elseif\|empty\|end\|show\)'
-        let indent = cindent < indent ? cindent : indent - &sw
+        let indent = indent - &sw
     else
         if exists("*GetBladeIndentCustom")
             let hindent = GetBladeIndentCustom()
@@ -47,7 +47,7 @@ function! GetBladeIndent()
 
     if line =~# '@\%(section\)\%(.*\s*@end\)\@!' && line !~# '@\%(section\)\s*([^,]*)'
         return indent
-    elseif line =~# '@\%(if\|elseif\|else\|unless\|foreach\|forelse\|for\|while\|empty\|push\|section\)\%(.*\s*@end\)\@!'
+    elseif line =~# '@\%(if\|elseif\|else\|unless\|foreach\|forelse\|for\|while\|empty\|push\|section\|can\)\%(.*\s*@end\)\@!'
         return increase
     else
         return indent
