@@ -23,7 +23,7 @@ syn region  bladeEcho       matchgroup=bladeDelimiter start="@\@<!{{" end="}}"  
 syn region  bladeEcho       matchgroup=bladeDelimiter start="{!!" end="!!}"  contains=@bladePhp,bladePhpParenBlock  containedin=ALLBUT,@bladeExempt keepend
 syn region  bladeComment    matchgroup=bladeDelimiter start="{{--" end="--}}"  contains=bladeTodo  containedin=ALLBUT,@bladeExempt keepend
 
-syn keyword bladeKeyword    @if @elseif @foreach @forelse @for @while @can @include @each @inject @extends @section @stack @push @unless @yield @parent nextgroup=bladePhpParenBlock skipwhite containedin=ALLBUT,@bladeExempt
+syn keyword bladeKeyword    @if @elseif @foreach @forelse @for @while @can @include @each @inject @extends @section @stack @push @unless @yield @parent @hasSection nextgroup=bladePhpParenBlock skipwhite containedin=ALLBUT,@bladeExempt
 syn keyword bladeKeyword    @else @endif @endunless @endfor @endforeach @empty @endforelse @endwhile @endcan @stop @append @endsection @endpush @show containedin=ALLBUT,@bladeExempt
 
 syn region  bladePhpParenBlock  matchgroup=bladeDelimiter start="\s*(" end=")" contains=@bladePhp,bladePhpParenBlock skipwhite contained

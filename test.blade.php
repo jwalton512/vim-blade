@@ -74,7 +74,13 @@ Hello, {!! $name !!}.
 
 <head>
     <!-- Head Contents -->
-    <title>Test - @yield('title')</title>
+    <title>
+        @hasSection('title')
+            Test - @yield('title')
+        @else
+            Test
+        @endif
+    </title>
 
     @stack('scripts')
 </head>
