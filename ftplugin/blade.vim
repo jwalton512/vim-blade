@@ -8,3 +8,7 @@ endif
 
 runtime! ftplugin/html.vim
 let b:did_ftplugin = 1
+
+setlocal suffixesadd=.blade.php,.php
+setlocal includeexpr=substitute(v:fname,'\\.','/','g')
+setlocal path+=resources/views;
