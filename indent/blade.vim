@@ -5,9 +5,15 @@
 if exists("b:did_indent")
     finish
 endif
+
 runtime! indent/html.vim
 let s:htmlindent = &indentexpr
 unlet! b:did_indent
+
+runtime! indent/php.vim
+let s:phpindent = &indentexpr
+unlet! b:did_indent
+
 let b:did_indent = 1
 
 setlocal autoindent
@@ -34,6 +40,8 @@ function! GetBladeIndent()
     else
         if exists("*GetBladeIndentCustom")
             let hindent = GetBladeIndentCustom()
+        elseif searchpair('@include\s*(', '', ')', 'bWr')
+            execute 'let hindent = ' . s:phpindent
         else
             execute 'let hindent = ' . s:htmlindent
         endif
