@@ -64,7 +64,7 @@ function! GetBladeIndent()
                 \ line =~# '{{\%(.*}}\)\@!' || line =~# '{!!\%(.*!!}\)\@!'
         return increase
     elseif line =~# '<?\%(.*?>\)\@!'
-        return indent(v:lnum - 1) + increase
+        return indent(lnum-1) == -1 ? increase : indent(lnum) + increase
     else
         return indent
     endif
