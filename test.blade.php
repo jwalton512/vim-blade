@@ -101,3 +101,26 @@ Hello, {!! $name !!}.
 @endsection
 
 <input name="example" {{ old('example') ? 'checked' : '' }} />
+
+<?php
+    $collection = collect([
+        'foo' => [
+            'bar',
+            'baz',
+        ]
+    ])
+?>
+
+@include('pages.home', [
+    'foo' => [
+        'bar',
+        'baz',
+    ]
+])
+
+{{
+    sprintf(
+        'This %s a multiline echo statement',
+        $foo
+    )
+}}
