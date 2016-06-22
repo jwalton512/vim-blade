@@ -6,6 +6,7 @@ if exists("b:did_indent")
     finish
 endif
 runtime! indent/html.vim
+let s:htmlindent = &indentexpr
 unlet! b:did_indent
 let b:did_indent = 1
 
@@ -34,7 +35,7 @@ function! GetBladeIndent()
         if exists("*GetBladeIndentCustom")
             let hindent = GetBladeIndentCustom()
         else
-            let hindent = HtmlIndent()
+            execute 'let hindent = ' . s:htmlindent
         endif
         if hindent > -1
             let indent = hindent
@@ -47,7 +48,7 @@ function! GetBladeIndent()
 
     if line =~# '@\%(section\)\%(.*\s*@end\)\@!' && line !~# '@\%(section\)\s*([^,]*)'
         return indent
-    elseif line =~# '@\%(if\|elseif\|else\|unless\|foreach\|forelse\|for\|while\|empty\|push\|section\|can\)\%(.*\s*@end\)\@!'
+    elseif line =~# '@\%(if\|elseif\|else\|unless\|foreach\|forelse\|for\|while\|empty\|push\|section\|can\|hasSection\)\%(.*\s*@end\)\@!'
         return increase
     else
         return indent
