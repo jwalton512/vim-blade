@@ -5,9 +5,15 @@
 if exists("b:did_indent")
     finish
 endif
+
 runtime! indent/html.vim
 let s:htmlindent = &indentexpr
 unlet! b:did_indent
+
+runtime! indent/php.vim
+let s:phpindent = &indentexpr
+unlet! b:did_indent
+
 let b:did_indent = 1
 
 setlocal autoindent
@@ -29,11 +35,17 @@ function! GetBladeIndent()
     let cline = substitute(substitute(getline(v:lnum), '\s\+$', '', ''), '^\s\+', '', '')
     let indent = indent(lnum)
     let cindent = indent(v:lnum)
-    if cline =~# '@\%(else\|elseif\|empty\|end\|show\)'
+    if cline =~# '@\%(else\|elseif\|empty\|end\|show\)' ||
+                \ cline =~# '\%(<?.*\)\@<!?>\|\%({{.*\)\@<!}}\|\%({!!.*\)\@<!!!}'
         let indent = indent - &sw
     else
         if exists("*GetBladeIndentCustom")
             let hindent = GetBladeIndentCustom()
+        elseif searchpair('@include\s*(', '', ')', 'bWr') ||
+                    \ searchpair('{!!', '', '!!}', 'bWr') ||
+                    \ searchpair('{{', '', '}}', 'bWr') ||
+                    \ searchpair('<?', '', '?>', 'bWr')
+            execute 'let hindent = ' . s:phpindent
         else
             execute 'let hindent = ' . s:htmlindent
         endif
@@ -48,8 +60,11 @@ function! GetBladeIndent()
 
     if line =~# '@\%(section\)\%(.*\s*@end\)\@!' && line !~# '@\%(section\)\s*([^,]*)'
         return indent
-    elseif line =~# '@\%(if\|elseif\|else\|unless\|foreach\|forelse\|for\|while\|empty\|push\|section\|can\|hasSection\)\%(.*\s*@end\)\@!'
+    elseif line =~# '@\%(if\|elseif\|else\|unless\|foreach\|forelse\|for\|while\|empty\|push\|section\|can\|hasSection\)\%(.*\s*@end\)\@!' ||
+                \ line =~# '{{\%(.*}}\)\@!' || line =~# '{!!\%(.*!!}\)\@!'
         return increase
+    elseif line =~# '<?\%(.*?>\)\@!'
+        return indent(lnum-1) == -1 ? increase : indent(lnum) + increase
     else
         return indent
     endif
