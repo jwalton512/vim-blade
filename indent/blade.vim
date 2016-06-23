@@ -34,7 +34,6 @@ function! GetBladeIndent()
     let line = substitute(substitute(getline(lnum), '\s\+$', '', ''), '^\s\+', '', '')
     let cline = substitute(substitute(getline(v:lnum), '\s\+$', '', ''), '^\s\+', '', '')
     let indent = indent(lnum)
-    let cindent = indent(v:lnum)
     if cline =~# '@\%(else\|elseif\|empty\|end\|show\|stop\)' ||
                 \ cline =~# '\%(<?.*\)\@<!?>\|\%({{.*\)\@<!}}\|\%({!!.*\)\@<!!!}'
         let indent = indent - &sw
@@ -56,9 +55,6 @@ function! GetBladeIndent()
         endif
     endif
     let increase = indent + &sw
-    if indent = indent(lnum)
-        let indent = cindent <= indent ? -1 : increase
-    endif
 
     if line =~# '@\%(section\)\%(.*@end\)\@!' && line !~# '@\%(section\)\s*([^,]*)'
         return indent
