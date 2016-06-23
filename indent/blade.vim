@@ -38,6 +38,8 @@ function! GetBladeIndent()
     if cline =~# '@\%(else\|elseif\|empty\|end\|show\|stop\)' ||
                 \ cline =~# '\%(<?.*\)\@<!?>\|\%({{.*\)\@<!}}\|\%({!!.*\)\@<!!!}'
         let indent = indent - &sw
+    elseif line =~# '<?\%(.*?>\)\@!'
+        let indent = indent + &sw
     else
         if exists("*GetBladeIndentCustom")
             let hindent = GetBladeIndentCustom()
@@ -63,8 +65,6 @@ function! GetBladeIndent()
     elseif line =~# '@\%(if\|elseif\|else\|unless\|foreach\|forelse\|for\|while\|empty\|push\|section\|can\|hasSection\)\%(.*@end\|.*@stop\)\@!' ||
                 \ line =~# '{{\%(.*}}\)\@!' || line =~# '{!!\%(.*!!}\)\@!'
         return increase
-    elseif line =~# '<?\%(.*?>\)\@!'
-        return indent(lnum-1) == -1 ? increase : indent(lnum) + increase
     else
         return indent
     endif
