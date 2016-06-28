@@ -19,7 +19,7 @@ unlet! b:current_syntax
 syn case match
 syn clear htmlError
 
-syn iskeyword @,@-@
+syn iskeyword @,48-57,_,192-255,@-@
 
 syn region  bladeEcho       matchgroup=bladeDelimiter start="@\@<!{{" end="}}"  contains=@bladePhp,bladePhpParenBlock  containedin=ALLBUT,@bladeExempt keepend
 syn region  bladeEcho       matchgroup=bladeDelimiter start="{!!" end="!!}"  contains=@bladePhp,bladePhpParenBlock  containedin=ALLBUT,@bladeExempt keepend
