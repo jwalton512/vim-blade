@@ -32,6 +32,14 @@ syn region  bladeComment    matchgroup=bladeDelimiter start="{{--" end="--}}"  c
 syn keyword bladeKeyword    @if @elseif @foreach @forelse @for @while @can @include @each @inject @extends @section @stack @push @unless @yield @parent @hasSection nextgroup=bladePhpParenBlock skipwhite containedin=ALLBUT,@bladeExempt
 syn keyword bladeKeyword    @else @endif @endunless @endfor @endforeach @empty @endforelse @endwhile @endcan @stop @append @endsection @endpush @show containedin=ALLBUT,@bladeExempt
 
+if exists('g:blade_custom_directives')
+    exe "syn keyword bladeKeyword @" . join(g:blade_custom_directives, ' @') . " nextgroup=bladePhpParenBlock skipwhite containedin=ALLBUT,@bladeExempt"
+endif
+if exists('g:blade_custom_directives_pairs')
+    exe "syn keyword bladeKeyword @" . join(keys(g:blade_custom_directives_pairs), ' @') . " nextgroup=bladePhpParenBlock skipwhite containedin=ALLBUT,@bladeExempt"
+    exe "syn keyword bladeKeyword @" . join(values(g:blade_custom_directives_pairs), ' @') . " containedin=ALLBUT,@bladeExempt"
+endif
+
 syn region  bladePhpParenBlock  matchgroup=bladeDelimiter start="\s*(" end=")" contains=@bladePhp,bladePhpParenBlock skipwhite contained
 
 syn cluster bladePhp contains=@phpClTop

@@ -124,3 +124,8 @@ Hello, {!! $name !!}.
         $foo
     )
 }}
+
+@cache
+    A custom Blade directive
+    @datetime($var)
+@endcache
