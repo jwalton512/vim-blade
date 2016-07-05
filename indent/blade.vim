@@ -18,7 +18,7 @@ let b:did_indent = 1
 
 setlocal autoindent
 setlocal indentexpr=GetBladeIndent()
-setlocal indentkeys=o,O,*<Return>,<>>,!^F,=@else,=@end,=@empty,=@show,=@stop
+setlocal indentkeys=o,O,<>>,!^F,0=}},0=!!},=@else,=@end,=@empty,=@show,=@stop
 
 " Only define the function once.
 if exists("*GetBladeIndent")
@@ -42,10 +42,12 @@ function! GetBladeIndent()
     else
         if exists("*GetBladeIndentCustom")
             let hindent = GetBladeIndentCustom()
-        elseif searchpair('@include\s*(', '', ')', 'bWr') ||
+        " Don't use PHP indentation if line is a comment
+        elseif line !~# '^\s*\%(#\|//\)\|\*/\s*$' && (
+                    \ searchpair('@include\s*(', '', ')', 'bWr') ||
                     \ searchpair('{!!', '', '!!}', 'bWr') ||
                     \ searchpair('{{', '', '}}', 'bWr') ||
-                    \ searchpair('<?', '', '?>', 'bWr')
+                    \ searchpair('<?', '', '?>', 'bWr') )
             execute 'let hindent = ' . s:phpindent
         else
             execute 'let hindent = ' . s:htmlindent
