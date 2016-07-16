@@ -129,3 +129,12 @@ Hello, {!! $name !!}.
     A custom Blade directive
     @datetime($var)
 @endcache
+
+@php($var = 'Hello World')
+@unset($var)
+
+@php
+    $environment = isset($env) ? $env : 'testing';
+@endphp
+
+do_not_highlight@php.net

@@ -46,7 +46,7 @@ function! GetBladeIndent()
     if cline =~# '@\%(' . s:directives_end . '\)' ||
                 \ cline =~# '\%(<?.*\)\@<!?>\|\%({{.*\)\@<!}}\|\%({!!.*\)\@<!!!}'
         let indent = indent - &sw
-    elseif line =~# '<?\%(.*?>\)\@!'
+    elseif line =~# '<?\%(.*?>\)\@!\|@php\%(\s*(\)\@!'
         let indent = indent + &sw
     else
         if exists("*GetBladeIndentCustom")
@@ -56,7 +56,8 @@ function! GetBladeIndent()
                     \ searchpair('@include\s*(', '', ')', 'bWr') ||
                     \ searchpair('{!!', '', '!!}', 'bWr') ||
                     \ searchpair('{{', '', '}}', 'bWr') ||
-                    \ searchpair('<?', '', '?>', 'bWr') )
+                    \ searchpair('<?', '', '?>', 'bWr') ||
+                    \ searchpair('@php\%(\s*(\)\@!', '', '@endphp', 'bWr') )
             execute 'let hindent = ' . s:phpindent
         else
             execute 'let hindent = ' . s:htmlindent
