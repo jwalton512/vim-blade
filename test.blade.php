@@ -74,7 +74,7 @@ Hello, {!! $name !!}.
     @yield('dont highlight')
 --}}
 
-{{-- todo fixme xxx --}}
+{{-- todo fixme xxx note TODO FIXME XXX NOTE --}}
 
 @inject('metrics', 'App\Services\MetricsService')
 

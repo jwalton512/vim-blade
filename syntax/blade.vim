@@ -50,7 +50,8 @@ syn cluster bladeExempt contains=bladeComment,bladePhpRegion,bladePhpParenBlock,
 
 syn cluster htmlPreproc add=bladeEcho,bladeComment,bladePhpRegion
 
-syn keyword bladeTodo todo fixme xxx  contained
+syn case ignore
+syn keyword bladeTodo todo fixme xxx note  contained
 
 hi def link bladeDelimiter      PreProc
 hi def link bladeComment        Comment
