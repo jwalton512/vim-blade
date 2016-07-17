@@ -138,6 +138,7 @@ Hello, {!! $name !!}.
 @cache
     A custom Blade directive
     @datetime($var)
+    @namespaced::directive($var)
 @endcache
 
 @php($var = 'Hello World')

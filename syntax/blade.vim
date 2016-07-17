@@ -20,7 +20,7 @@ syn case match
 syn clear htmlError
 
 if has('patch-7.4.1142')
-    syn iskeyword @,48-57,_,192-255,@-@
+    syn iskeyword @,48-57,_,192-255,@-@,:
 else
     setlocal iskeyword+=@-@
 endif
