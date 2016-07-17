@@ -18,6 +18,23 @@ Using pathogen
     cd ~/.vim/bundle
     git clone git://github.com/jwalton512/vim-blade.git
 
+Configuration
+-------------
+
+Because Blade allows you to define your own directives, you can let the plugin
+know about them through some variables. Examples:
+
+```vim
+" Define some single Blade directives. This variable is used for highlighting only.
+let g:blade_custom_directives = ['datetime', 'javascript']
+
+" Define pairs of Blade directives. This variable is used for highlighting and indentation.
+let g:blade_custom_directives_pairs = {
+      \   'markdown': 'endmarkdown',
+      \   'cache': 'endcache',
+      \ }
+```
+
 Contributing
 ------------
 

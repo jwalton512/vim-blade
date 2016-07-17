@@ -25,3 +25,6 @@ set nowrap
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
             \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
             \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+let g:blade_custom_directives = ['datetime', 'namespaced::directive']
+let g:blade_custom_directives_pairs = {'cache': 'endcache'}
