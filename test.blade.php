@@ -29,6 +29,8 @@ Hello, {!! $name !!}.
 
 @foreach ($users as $user)
     <p>This is user {{ $user->id }}</p>
+    @break
+    @continue
 @endforeach
 
 @forelse ($users as $user)
@@ -43,9 +45,17 @@ Hello, {!! $name !!}.
 
 @can('update-post', $post)
     <!-- current user can update the post -->
+@elsecan('delete-post', $post)
+    <!-- current user can delete the post -->
 @else
-    <!-- current user can't update the post -->
+    <!-- current user can't update or delete the post -->
 @endcan
+
+@cannot('view-post')
+    <!-- current user cannot view the post -->
+@elsecannot('publish-post')
+    <!-- current user cannot publish the post -->
+@endcannot
 
 <div>
     @include('shared.errors')
@@ -138,3 +148,12 @@ Hello, {!! $name !!}.
 @endphp
 
 do_not_highlight@php.net
+
+@verbatim
+    <p class="highlighted">@if(true) {{ $notHighlighted }} @endif</p>
+    <!-- highlighted -->
+    <?php /* also highlighted */ ?>
+@endverbatim
+
+@lang('messages.welcome')
+@choice('messages.items', 3)
