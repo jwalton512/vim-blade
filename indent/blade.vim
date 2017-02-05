@@ -84,7 +84,7 @@ function! GetBladeIndent()
                 \ searchpair('{!!', '', '!!}', 'bWr') ||
                 \ searchpair('{{', '', '}}', 'bWr') ||
                 \ searchpair('<?', '', '?>', 'bWr') ||
-                \ searchpair('@php\%(\s*(\)\@!', '', '@endphp', 'bWr') )
+                \ searchpair('@php\s*(\@!', '', '@endphp', 'bWr') )
         " Only use PHP's indent if the region spans multiple lines
         if !s:IsStartingDelimiter(v:lnum)
             execute 'let indent = ' . s:phpindent
