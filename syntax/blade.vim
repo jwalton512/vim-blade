@@ -47,7 +47,7 @@ if exists('g:blade_custom_directives_pairs')
     exe "syn keyword bladeKeyword @" . join(values(g:blade_custom_directives_pairs), ' @') . " containedin=ALLBUT,@bladeExempt"
 endif
 
-syn region  bladePhpRegion  matchgroup=bladeKeyword start="\<@php\>\%(\s*(\)\@!" end="\<@endphp\>"  contains=@bladePhp  containedin=ALLBUT,@bladeExempt keepend
+syn region  bladePhpRegion  matchgroup=bladeKeyword start="\<@php\>\s*(\@!" end="\<@endphp\>"  contains=@bladePhp  containedin=ALLBUT,@bladeExempt keepend
 syn match   bladeKeyword "@php\ze\s*(" nextgroup=bladePhpParenBlock skipwhite containedin=ALLBUT,@bladeExempt
 
 syn region  bladePhpParenBlock  matchgroup=bladeDelimiter start="\s*(" end=")" contains=@bladePhp,bladePhpParenBlock skipwhite contained
