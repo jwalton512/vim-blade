@@ -95,6 +95,11 @@ Hello, {!! $name !!}.
     @stack('scripts')
 </head>
 
+@prepend('scripts')
+    <script src="{{ mix('/js/manifest.js') }}"></script>
+    <script src="{{ mix('/js/vendor.js') }}"></script>
+@endprepend
+
 <div>
     @section('sidebar')
         This is the master sidebar.
