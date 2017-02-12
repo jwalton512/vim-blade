@@ -30,13 +30,13 @@ syn region  bladeEcho       matchgroup=bladeDelimiter start="{!!" end="!!}"  con
 syn region  bladeComment    matchgroup=bladeDelimiter start="{{--" end="--}}"  contains=bladeTodo  containedin=ALLBUT,@bladeExempt keepend
 
 syn keyword bladeKeyword @if @elseif @foreach @forelse @for @while @can @cannot @elsecan @elsecannot @include
-    \ @includeIf @each @inject @extends @section @stack @push @unless @yield @parent @hasSection @break @continue 
-    \ @unset @lang @choice @component @slot
+    \ @includeIf @each @inject @extends @section @stack @push @unless @yield @parent @hasSection @break @continue
+    \ @unset @lang @choice @component @slot @prepend
     \ nextgroup=bladePhpParenBlock skipwhite containedin=ALLBUT,@bladeExempt
 
-syn keyword bladeKeyword @else @endif @endunless @endfor @endforeach @empty @endforelse @endwhile @endcan 
+syn keyword bladeKeyword @else @endif @endunless @endfor @endforeach @empty @endforelse @endwhile @endcan
     \ @endcannot @stop @append @endsection @endpush @show @overwrite @verbatim @endverbatim @endcomponent
-    \ @endslot
+    \ @endslot @endprepend
     \ containedin=ALLBUT,@bladeExempt
 
 if exists('g:blade_custom_directives')
