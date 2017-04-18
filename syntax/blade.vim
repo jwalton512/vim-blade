@@ -3,21 +3,8 @@
 " Maintainer:   Jason Walton <jwalton512@gmail.com>
 " Filenames:    *.blade.php
 
-if exists('b:current_syntax')
-    finish
-endif
-
-if !exists("main_syntax")
-    let main_syntax = 'blade'
-endif
-
-runtime! syntax/html.vim
-unlet! b:current_syntax
-runtime! syntax/php.vim
-unlet! b:current_syntax
-
 syn case match
-syn clear htmlError
+syn clear htmlError htmlTagError
 
 if has('patch-7.4.1142')
     syn iskeyword @,48-57,_,192-255,@-@,:
@@ -25,48 +12,84 @@ else
     setlocal iskeyword+=@-@
 endif
 
-syn region  bladeEcho       matchgroup=bladeDelimiter start="@\@<!{{" end="}}"  contains=@bladePhp,bladePhpParenBlock  containedin=ALLBUT,@bladeExempt keepend
-syn region  bladeEcho       matchgroup=bladeDelimiter start="{!!" end="!!}"  contains=@bladePhp,bladePhpParenBlock  containedin=ALLBUT,@bladeExempt keepend
-syn region  bladeComment    matchgroup=bladeDelimiter start="{{--" end="--}}"  contains=bladeTodo  containedin=ALLBUT,@bladeExempt keepend
+"{{{ blade lone directives
+let g:blade_directives = [
+      \'append',
+      \'break',
+      \'choice',
+      \'continue',
+      \'each',
+      \'else',
+      \'elsecan',
+      \'elsecannot',
+      \'elseif',
+      \'empty',
+      \'extends',
+      \'hasSection',
+      \'include',
+      \'inject',
+      \'lang',
+      \'overwrite',
+      \'show',
+      \'stack',
+      \'stop',
+      \'unset',
+      \'yield'
+      \]
+"}}}
 
-syn keyword bladeKeyword @if @elseif @foreach @forelse @for @while @can @cannot @elsecan @elsecannot @include
-    \ @includeIf @each @inject @extends @section @stack @push @unless @yield @parent @hasSection @break @continue
-    \ @unset @lang @choice @component @slot @prepend
-    \ nextgroup=bladePhpParenBlock skipwhite containedin=ALLBUT,@bladeExempt
-
-syn keyword bladeKeyword @else @endif @endunless @endfor @endforeach @empty @endforelse @endwhile @endcan
-    \ @endcannot @stop @append @endsection @endpush @show @overwrite @verbatim @endverbatim @endcomponent
-    \ @endslot @endprepend
-    \ containedin=ALLBUT,@bladeExempt
+"{{{ blade directive pairs
+" this separation is purely for organization
+let g:blade_directive_pairs = {
+      \'can':       'endcan',
+      \'cannot':    'endcannot',
+      \'component': 'endcomponent',
+      \'for':       'endfor',
+      \'foreach':   'endforeach',
+      \'forelse':   'endforelse',
+      \'if':        'endif',
+      \'php':       'endphp',
+      \'prepend':   'endprepend',
+      \'push':      'endpush',
+      \'section':   'endsection',
+      \'slot':      'endslot',
+      \'unless':    'endunless',
+      \'verbatim':  'endverbatim',
+      \'while':     'endwhile'
+      \}
+"}}}
 
 if exists('g:blade_custom_directives')
-    exe "syn keyword bladeKeyword @" . join(g:blade_custom_directives, ' @') . " nextgroup=bladePhpParenBlock skipwhite containedin=ALLBUT,@bladeExempt"
+  let g:blade_directives += g:blade_custom_directives
 endif
+
 if exists('g:blade_custom_directives_pairs')
-    exe "syn keyword bladeKeyword @" . join(keys(g:blade_custom_directives_pairs), ' @') . " nextgroup=bladePhpParenBlock skipwhite containedin=ALLBUT,@bladeExempt"
-    exe "syn keyword bladeKeyword @" . join(values(g:blade_custom_directives_pairs), ' @') . " containedin=ALLBUT,@bladeExempt"
+  call extend(g:blade_directive_pairs, g:blade_custom_directives_pairs)
 endif
 
-syn region  bladePhpRegion  matchgroup=bladeKeyword start="\<@php\>\s*(\@!" end="\<@endphp\>"  contains=@bladePhp  containedin=ALLBUT,@bladeExempt keepend
-syn match   bladeKeyword "@php\ze\s*(" nextgroup=bladePhpParenBlock skipwhite containedin=ALLBUT,@bladeExempt
+let g:blade_directive_opening = g:blade_directives + keys(g:blade_directive_pairs)
+let g:blade_directive_closing = values(g:blade_directive_pairs)
 
-syn region  bladePhpParenBlock  matchgroup=bladeDelimiter start="\s*(" end=")" contains=@bladePhp,bladePhpParenBlock skipwhite contained
+for i in g:blade_directive_opening
+  exec 'syn match bladeDirective /\<@'.i.'\>/ nextgroup=bladeParenBlock skipwhite containedin=ALLBUT,@bladeExempt'
+endfor
 
-syn cluster bladePhp contains=@phpClTop
-syn cluster bladeExempt contains=bladeComment,bladePhpRegion,bladePhpParenBlock,@htmlTop
+for i in g:blade_directive_closing
+  exec 'syn match bladeDirective /\<@'.i.'\>/ containedin=ALLBUT,@bladeExempt'
+endfor
 
-syn cluster htmlPreproc add=bladeEcho,bladeComment,bladePhpRegion
+syn region bladeParenBlock  matchgroup=Delimiter start="\s*(" end=")" contains=@phpClTop,bladeParenBlock skipwhite contained
+syn region bladeEcho        matchgroup=Delimiter start="@\@<!{{" end="}}" contains=@phpClTop,bladeParenBlock containedin=ALLBUT,@bladeExempt keepend
+syn region bladeEcho        matchgroup=Delimiter start="{!!" end="!!}" contains=@phpClTop,bladeParenBlock containedin=ALLBUT,@bladeExempt keepend
+syn region bladeComment     matchgroup=Delimiter start="{{--" end="--}}" contains=bladeTodo containedin=ALLBUT,@bladeExempt keepend
 
-syn case ignore
-syn keyword bladeTodo todo fixme xxx note  contained
+syn match bladeTodo contained /\c\(todo\|fixme\|xxx\|note\):\=/
 
-hi def link bladeDelimiter      PreProc
-hi def link bladeComment        Comment
-hi def link bladeTodo           Todo
-hi def link bladeKeyword        Statement
+syn cluster bladeExempt contains=bladeComment,bladePhpRegion,bladeParenBlock
 
-let b:current_syntax = 'blade'
+hi def link bladeDelimiter    PreProc
+hi def link bladeDirective    Statement
+hi def link bladeTodo         Todo
+hi def link bladeComment      Comment
 
-if exists('main_syntax') && main_syntax == 'blade'
-    unlet main_syntax
-endif
+" vim:foldmethod=marker:foldlevel=0
