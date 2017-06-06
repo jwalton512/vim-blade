@@ -169,3 +169,5 @@ do_not_highlight@php.net
         Title goes here
     @endslot
 @endcomponent
+
+<div @if($active) class="active" @endif></div>
