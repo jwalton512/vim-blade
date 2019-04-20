@@ -31,7 +31,7 @@ syn region  bladeComment    matchgroup=bladeDelimiter start="{{--" end="--}}"  c
 
 syn keyword bladeKeyword @if @elseif @foreach @forelse @for @while @can @cannot @elsecan @elsecannot @include
     \ @includeIf @each @inject @extends @section @stack @push @unless @yield @parent @hasSection @break @continue
-    \ @unset @lang @choice @component @slot @prepend @json @isset @auth @guest @switch @case @includeFirst @empty
+    \ @unset @lang @choice @component @slot @prepend @json @isset @auth @guest @switch @case @default @includeFirst @empty
     \ @includeWhen
     \ nextgroup=bladePhpParenBlock skipwhite containedin=ALLBUT,@bladeExempt
 
