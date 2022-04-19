@@ -1,3 +1,5 @@
+@props(['foo' => 'bar'])
+
 <?php if($foo='bar' ) { $something() } ?>
 Hello, {{ $name }}.
 
